@@ -7,10 +7,9 @@ class Tweet extends React.Component {
     }
 
     render(){
-        const { name } = this.props; 
         return(
             <div className="tweet-container">
-                <h1>{name}</h1>
+                <h1>{this.props.nameOfTweet}</h1>
             </div>
         )
     }

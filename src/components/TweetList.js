@@ -24,7 +24,7 @@ class TweetList extends React.Component {
 
     renderItems = () => {
         return this.state.tweets.map(tweet => (
-            <Tweet name={tweet}/>
+            <Tweet nameOfTweet={tweet}/>
         ))
     }
 
