@@ -5,6 +5,7 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/twitter-db"
 mongo = PyMongo(app)
 db = mongo.db.tweets
+
 @app.route("/index")
 def index(): 
     return "hello world"

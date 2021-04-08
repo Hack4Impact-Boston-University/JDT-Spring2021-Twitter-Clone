@@ -1,6 +1,7 @@
 import React from 'react' 
 import Tweet from '../components/Tweet'
 import '../App.css'
+import axios from 'axios';
 
 class TweetList extends React.Component {
     constructor(props){
