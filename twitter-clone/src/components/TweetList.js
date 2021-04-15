@@ -13,6 +13,22 @@ class TweetList extends React.Component {
         }
     }
 
+    componentDidMount() {
+        axios.get('/get-all-tweets').then(resp => {
+            const retrievedTweets = resp.data.tweets;
+            retrievedTweets.forEach(tweet => {
+                this.setState({tweets: [...this.state.tweets, tweet.tweet]});
+            })
+        })
+    }
+
+    urlEncode = (data) => {
+        var urlEncodedString = "";
+        Object.keys(data).forEach(function(key) {
+            urlEncodedString += key + "=" + encodeURIComponent(data[key]) + "&";
+        });
+        return urlEncodedString.slice(0, -1); //remove the trailing '&'
+    }
 
     changeStateName = (event) => {
         this.setState({name: event.target.value})
@@ -20,7 +36,12 @@ class TweetList extends React.Component {
 
     handleSubmit = () => {
         this.setState({displayText: ""})
-        this.setState({tweets: [...this.state.tweets, this.state.name]})
+        this.setState({tweets: [...this.state.tweets, this.state.name]}); 
+        axios.post('/add-tweet', this.urlEncode({"tweet": this.state.name})).then(resp => {
+            console.log(resp);
+        })
+        console.log('here')
+
     }
 
     renderItems = () => {
